@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="left">
+        <img src="./023.png" alt="" />
+      </div>
+      <div class="right">
+        <form class="needs-validation" novalidate id="myForm" name="myForm">
+          <div>
+            <label for="email_to" class="form-label">Email address to</label>
+            <input
+              required
+              type="email"
+              class="form-control"
+              id="emai_to"
+              placeholder="name@example.com"
+            />
+          </div>
+          <div>
+            <label for="email_cc" class="form-label">Email address cc</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emai_cc"
+              placeholder="name@example.com"
+              required
+            />
+          </div>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            required
+          >
+            <option value="">Select report</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <div class="checkBox">
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="mandatory"
+                id="daily"
+                value="daily"
+                checked
+              />
+              <label class="form-check-label" for="daily">Daily</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="mandatory"
+                id="weekly"
+                value="weekly"
+              />
+              <label class="form-check-label" for="weekly">Weekly</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="mandatory"
+                id="monthly"
+                value="monthly"
+              />
+              <label class="form-check-label" for="monthly">Monthly</label>
+            </div>
+          </div>
+
+          <div>
+            <label for="speed" class="form-label">Enter your speed</label>
+            <input
+              type="number"
+              class="form-control"
+              id="speed"
+              placeholder="enter your speed"
+              required
+            />
+          </div>
+          <div>
+            <label for="duration" class="form-label">Enter your speed</label>
+            <input
+              type="number"
+              class="form-control"
+              id="duration"
+              placeholder="enter your speed"
+              required
+            />
+          </div>
+
+          <select class="form-select" aria-label="Default select example" required>
+            <option value="">Select vehicle</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        'use strict';
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation');
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            'submit',
+            function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add('was-validated');
+            },
+            false
+          );
+        });
+      })();
+
+      const form = document.getElementById('myForm');
+      const input = document.getElementsByName('mandatory');
+      form.onsubmit = () => {
+        input.forEach((radio) => {
+          if (radio.checked) {
+            console.log(radio.value);
+          }
+        });
+      };
+    </script>
+  </body>
+</html>
