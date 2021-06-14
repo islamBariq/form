@@ -64,3 +64,6 @@ input::placeholder {
     margin-top:13%;
   }
 }
+.hide{
+  display: none;
+}

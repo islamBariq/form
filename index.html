@@ -26,7 +26,7 @@
               required
               type="email"
               class="form-control"
-              id="emai_to"
+              id="email_to"
               placeholder="name@example.com"
             />
           </div>
@@ -35,7 +35,7 @@
             <input
               type="email"
               class="form-control"
-              id="emai_cc"
+              id="email_cc"
               placeholder="name@example.com"
               required
             />
@@ -44,11 +44,25 @@
             class="form-select"
             aria-label="Default select example"
             required
+            id="report"
           >
             <option value="">Select report</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="Alarms_and_Notifications">
+              Alarmand Notifications Report
+            </option>
+            <option value="CompleteReport">Complete Report</option>
+            <option value="Custom_Running_ime">
+              Custom Running Time Daily
+            </option>
+            <option value="Driver_Logging">Driver Logging</option>
+            <option value="Fuel_Summary">Fuel Summary Daily</option>
+            <option value="Offline_Report">Offline Report Daily</option>
+            <option value="Over_Speed">Over Speed Daily</option>
+            <option value="OverStreetSpeedReport">OverStreetSpeed Report</option>
+            <option value="Speed_Over_Duration">Speed Over Duration Daily</option>
+            <option value="Trip">Trip Daily
+              <option value="User_Vehicles">User Vehicles Daily</option>
+            </option>
           </select>
           <div class="checkBox">
             <div class="form-check form-check-inline">
@@ -84,32 +98,40 @@
             </div>
           </div>
 
-          <div>
+          <div class="hide extraParamter"  >
             <label for="speed" class="form-label">Enter your speed</label>
             <input
+          
               type="number"
               class="form-control"
               id="speed"
               placeholder="enter your speed"
+              min="0"
               required
             />
           </div>
-          <div>
-            <label for="duration" class="form-label">Enter your speed</label>
+          <div class="hide extraParamter" >
+            <label for="duration" class="form-label">Enter your duration</label>
             <input
               type="number"
               class="form-control"
               id="duration"
-              placeholder="enter your speed"
+              placeholder="enter your duration"
+              min="0"
+
               required
             />
           </div>
 
-          <select class="form-select" aria-label="Default select example" required>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            required
+            id="selectVehicle"
+          >
             <option value="">Select vehicle</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="1">Select vehicle</option>
+
           </select>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
@@ -120,39 +142,34 @@
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
-    <script>
-      (function () {
-        'use strict';
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation');
-
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms).forEach(function (form) {
-          form.addEventListener(
-            'submit',
-            function (event) {
-              if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-
-              form.classList.add('was-validated');
-            },
-            false
-          );
-        });
-      })();
-
-      const form = document.getElementById('myForm');
-      const input = document.getElementsByName('mandatory');
-      form.onsubmit = () => {
-        input.forEach((radio) => {
-          if (radio.checked) {
-            console.log(radio.value);
-          }
-        });
-      };
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
+    <script>(function () {
+      'use strict';
+  
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation');
+  
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          'submit',
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            if(form.checkValidity()){
+              submitTOServer(event)
+            }
+  
+            form.classList.add('was-validated');
+          },
+          false
+        );
+      });
+    })();
+  
+  </script>
   </body>
 </html>
