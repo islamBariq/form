@@ -47,6 +47,12 @@ function getVehicles() {
     })
     .then((response) => {
       vehicles = response;
+      vehicles.map((vehicle) => {
+        let option = document.createElement('option');
+        option.value = vehicle.DisplayName;
+        option.innerText = vehicle.DisplayName;
+        selectVehicles.appendChild(option);
+      });
     });
 }
 
@@ -76,10 +82,3 @@ function submitTOServer(event) {
   };
   axios.post('api.saferoad.net:6010/report-scheduler', REPORT_scheduler);
 }
-
-vehicles.map((vehicle) => {
-  let option = document.createElement('option');
-  option.value = vehicle.DisplayName;
-  option.innerText = vehicle.DisplayName;
-  selectVehicles.appendChild(option);
-});
