@@ -5,6 +5,10 @@ let reportChange = document.getElementById('report');
 let REPORT_scheduler = {};
 let speedValue = null;
 let ExtraParameters = document.querySelectorAll('.extraParamter');
+let bearer = [];
+let id = 3;
+let token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc2FmZXJvYWQuY29tLnNhIiwiaWF0IjoxNjIzNjU2MjY0fQ.A3jw8cYEHMHxN0YKKYesjX5xMlTmGsvswunvAWcF-UI';
 
 showExtraParamter();
 getUser();
@@ -26,11 +30,13 @@ function showExtraParamter() {
     }
   });
 }
+
+function generateToken() {}
 function getUser() {
   axios
-    .get(`api.saferoad.net:6010/account/${id}`, {
+    .get(`http://api.saferoad.net:6010/account/${id}`, {
       headers: {
-        Authorization: bearer[token],
+        Authorization: 'bearer ' + token,
       },
     })
     .then((response) => {
@@ -40,9 +46,9 @@ function getUser() {
 
 function getVehicles() {
   axios
-    .get(`api.saferoad.net:6010/vehicle/${id}`, {
+    .get(`http://api.saferoad.net:6010/vehicle/?account_id=${id}`, {
       headers: {
-        Authorization: bearer[token],
+        Authorization: 'bearer ' + token,
       },
     })
     .then((response) => {
