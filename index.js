@@ -40,7 +40,7 @@ function getUser() {
       },
     })
     .then((response) => {
-      accountInfo = response;
+      accountInfo = response.data;
     });
 }
 
@@ -52,7 +52,7 @@ function getVehicles() {
       },
     })
     .then((response) => {
-      vehicles = response;
+      vehicles = response.data;
       vehicles.map((vehicle) => {
         let option = document.createElement('option');
         option.value = vehicle.DisplayName;
