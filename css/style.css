@@ -1,0 +1,119 @@
+body {
+
+    background: rgb(168,219,119);
+    background: linear-gradient(90deg, rgba(168,219,119,1) 0%, rgba(156,203,240,1) 100%);
+}
+.form-container {
+  width: 600px;
+  height: 560px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin: auto;
+  margin-top: 5%;
+  background-color: white;
+  display: flex;
+}
+
+.left {
+  width: 40%;
+  background-color: rgb(205, 217, 252);
+}
+.left img {
+  height: 241px;
+  margin-top: 140px;
+}
+.right {
+  padding-top: 20px;
+  margin: auto;
+  margin-top:10px;
+  width:60%;
+}
+.form-control,.form-select {
+  margin-bottom: 8px;
+  width:300px;
+  margin:Auto
+}
+.form-check {
+  margin-right: 10px;
+  font-weight: 550
+  ;
+}
+#sample-select{
+  width:300px;
+  margin-left:30px;
+  margin-top:10px
+
+}
+.vscomp-ele {
+  max-width: 300px;
+}
+.form-select {
+    margin-bottom: 10px;
+    margin-top:10px;
+}
+.btn-success {
+    margin-left: 94px !important;
+    margin-top: 20px;
+    width: 109px;
+}
+label {
+    color:#5F5FFF;
+}
+
+input::placeholder {
+    color:black !important
+}
+.form-label {
+  margin-bottom: .5rem;
+  margin-left: 30px;
+}
+.checkBox{
+  margin-left:30px
+}
+
+@media(max-width:500px){
+  .left {
+    display: none;
+  }
+  .form-container {
+    width:400px;
+    margin-top:13%;
+  }
+  .form-control, .form-select {
+    margin-left: -30px;
+}
+.form-label {
+  margin-bottom: .5rem;
+  margin-left: -30px;
+}
+#sample-select{
+margin-left: -30px;
+}
+.checkBox {
+  margin-left: -30px;
+}
+.btn-success {
+  margin-left: 64px !important;}
+}
+.hide{
+  display: none;
+}
+.red {
+  border:1px solid #dc3545;
+  border-radius: .25rem;
+  -webkit-border-radius: .25rem;
+  -moz-border-radius: .25rem;
+  -ms-border-radius: .25rem;
+  -o-border-radius: .25rem;
+}
+.green {
+  border:1px solid #198754;
+  border-radius: .25rem;
+  -webkit-border-radius: .25rem;
+  -moz-border-radius: .25rem;
+  -ms-border-radius: .25rem;
+  -o-border-radius: .25rem;
+}

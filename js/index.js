@@ -2,10 +2,13 @@ let accountInfo = {};
 let vehicles = [];
 let selectVehicles = document.getElementById('selectVehicle');
 let reportChange = document.getElementById('report');
-let REPORT_scheduler = {};
+let REPORT_scheduler = null;
 let speedValue = null;
 let ExtraParameters = document.querySelectorAll('.extraParamter');
+let options = [];
+let option = { label: '', value: '' };
 let bearer = [];
+let multiSelect = document.getElementById('sample-select');
 let id = 3;
 let token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc2FmZXJvYWQuY29tLnNhIiwiaWF0IjoxNjIzNjU2MjY0fQ.A3jw8cYEHMHxN0YKKYesjX5xMlTmGsvswunvAWcF-UI';
@@ -31,7 +34,6 @@ function showExtraParamter() {
   });
 }
 
-function generateToken() {}
 function getUser() {
   axios
     .get(`http://api.saferoad.net:6010/account/${id}`, {
@@ -40,8 +42,31 @@ function getUser() {
       },
     })
     .then((response) => {
-      accountInfo = response.data;
+      accountInfo = response;
     });
+}
+VirtualSelect.init({
+  ele: '#sample-select',
+  options: [],
+  multiple: true,
+  search: false,
+});
+function checkMultiSelect() {
+  multiSelect.addEventListener('change', function () {
+    if (multiSelect.value.length >= 1) {
+      document.querySelector('.vscomp-wrapper').classList.add('green');
+    }
+  });
+
+  if (multiSelect.value.length === 0) {
+    document.querySelector('.vscomp-wrapper').classList.add('red');
+
+    return true;
+  } else {
+    document.querySelector('.vscomp-wrapper').classList.add('green');
+
+    return false;
+  }
 }
 
 function getVehicles() {
@@ -54,15 +79,16 @@ function getVehicles() {
     .then((response) => {
       vehicles = response.data;
       vehicles.map((vehicle) => {
-        let option = document.createElement('option');
-        option.value = vehicle.DisplayName;
-        option.innerText = vehicle.DisplayName;
-        selectVehicles.appendChild(option);
+        option.label = vehicle.PlateNumber;
+        option.value = vehicle.PlateNumber;
+        options.push(option);
       });
+      document.querySelector('#sample-select').setOptions(options);
     });
 }
 
 function submitTOServer(event) {
+  checkMultiSelect();
   let RecurringValue = null;
   document.getElementsByName('mandatory').forEach((radio) => {
     if (radio.checked) {
@@ -76,7 +102,7 @@ function submitTOServer(event) {
     Account_Name: accountInfo.AccountName,
     Email_to: document.getElementById('email_to').value,
     Email_cc: document.getElementById('email_cc').value,
-    vehicles: document.getElementById('selectVehicle').value,
+    vehicles: multiSelect.value,
     Report_type: document.getElementById('report').value,
     Recurring: RecurringValue,
     Speed: document.getElementById('speed').value
@@ -86,5 +112,9 @@ function submitTOServer(event) {
       ? document.getElementById('duration').value
       : null,
   };
-  axios.post('api.saferoad.net:6010/report-scheduler', REPORT_scheduler);
+  axios.post('api.saferoad.net:6010/report-scheduler', REPORT_scheduler).then(res=>{
+    console.log(res)
+  }).catch(err => {
+    console.log(err)
+  });
 }
